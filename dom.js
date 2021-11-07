@@ -27,7 +27,7 @@ playButton.onclick = () => {
             box.style.textAlign = 'center';
             box.style.fontSize = '80px';
             if(numberOfbox>3 && numberOfbox<6){
-                box.style.fontSize = '60px';
+                box.style.fontSize = '50px';
             }else if(numberOfbox>=6 && numberOfbox<= 8){
                 box.style.fontSize = '34px';
             }else if(numberOfbox>8){
