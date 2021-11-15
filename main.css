@@ -73,6 +73,20 @@ h3{
     height: 600px;
     justify-content: center;
     margin: 0 auto;
+    position: relative;
+}
+.popup{
+    display: none;
+    position: absolute;
+    top: 244px;
+    left: 24%;
+    padding: 40px 80px;
+    border: 1px solid black;
+    background-color: rgb(92, 23, 105);
+    color: #fff;
+    opacity: .95;
+    font-size: 24px;
+    text-align: center;
 }
 
 @media (max-width: 600px){
@@ -89,5 +103,11 @@ h3{
         width: 300px;
         height: 300px;
     }
-
+    .popup{
+        top: 95px;
+        left: 6%;
+        font-size: 24px;
+        padding: 38px 66px;
+        font-size: 20px;
+    }
 }
