@@ -3,7 +3,10 @@ const input = document.getElementById('numberOfBox');
 const container = document.getElementById('gridContainer');
 const buttonBoxes = 'buttonBoxes';
 const titleNumber = document.getElementById("titleNumber");
+const popup = document.getElementById("popup");
+const newGame = document.getElementById("newGame");
 let btn;
+let random;
 let isPlayer = true;
 const x = 'X';
 const o = 'O';
@@ -36,8 +39,11 @@ playButton.onclick = () => {
         }
     }
     btn = document.getElementsByClassName(buttonBoxes);
+    function randomItem(a) {
+        return Math.floor(Math.random()*a);
+    }
+    random = randomItem(btn.length)
 }
-
 playButton.addEventListener('click', () => {
     for (i = 0; i < btn.length; i++) {
         btn[i].onclick = function () {
@@ -45,16 +51,29 @@ playButton.addEventListener('click', () => {
                 if (isPlayer) {
                     this.innerHTML = x;
                     isPlayer = false;
-                } else if (!isPlayer) {
-                    this.innerHTML = o;
-                    isPlayer = true;
+                    setTimeout(()=>{
+                        function randomItem(a) {
+                            return Math.floor(Math.random()*a);
+                        }
+                        let arr = Array.from(btn);
+                        let filtered = arr.filter(el=>el.innerHTML==='')
+                        random = randomItem(filtered.length);
+                        filtered[random].innerHTML = o;
+                        isPlayer = true;
+                        checkHorizontalWin();
+                        checkVerticalWin();
+                        checkLeftDiagonal();
+                        checkRightDiagonal();
+                        checkDraw();
+                    },1000)
+                        checkHorizontalWin();
+                        checkVerticalWin();
+                        checkLeftDiagonal();
+                        checkRightDiagonal();
+                        checkDraw();
                 }
-                checkHorizontalWin();
-                checkVerticalWin();
-                checkLeftDiagonal();
-                checkRightDiagonal();
-                checkDraw();
-            } else {
+                } 
+            else {
                 alert('Field is already taken!');
             }
         }
@@ -67,11 +86,11 @@ const checkHorizontalWin = () => {
     while (horizontalArray.length > 0) {
         newHorizontal = horizontalArray.splice(0, input.value);
         if (newHorizontal.every(el => el.innerHTML === x)) {
-            alert('X Win!');
-            changeColor(newHorizontal);
+            popup.style.display = 'block';
+            return changeColor(newHorizontal);
         } else if (newHorizontal.every(el => el.innerHTML === o)) {
-            alert('O Win!');
-            changeColor(newHorizontal);
+            alert('LOOSER!');
+            return changeColor(newHorizontal);
         }
     }
 }
@@ -85,10 +104,10 @@ const checkVerticalWin = () => {
             arr.push(verticalArray[i]);
         }
         if (arr.every(el => el.innerHTML === x)) {
-            alert('X Win!');
-            changeColor(arr);
+            popup.style.display = 'block';
+            return changeColor(arr);
         } else if (arr.every(el => el.innerHTML === o)) {
-            alert('O Win!');
+            alert('LOOSER!');
             changeColor(arr);
         }
     }
@@ -102,10 +121,10 @@ const checkLeftDiagonal = () => {
         arr.push(leftDiagonalArray[i]);
     }
     if (arr.every(el => el.innerHTML === x)) {
-        alert('X Win!');
-        changeColor(arr);
+        popup.style.display = 'block';
+        return changeColor(arr);
     } else if (arr.every(el => el.innerHTML === o)) {
-        alert('O Win!');
+        alert('LOOSER!');
         changeColor(arr);
     }
 }
@@ -118,10 +137,10 @@ const checkRightDiagonal = () => {
         arr.push(rightDiagonalArray[i]);
     }
     if (arr.every(el => el.innerHTML === x)) {
-        alert('X Win!');
-        changeColor(arr);
+        popup.style.display = 'block';
+        return changeColor(arr);
     } else if (arr.every(el => el.innerHTML === o)) {
-        alert('O Win!');
+        alert('LOOSER!');
         changeColor(arr);
     }
 }
@@ -129,11 +148,18 @@ const checkRightDiagonal = () => {
 const checkDraw = ()=>{
     let  drawArray = Array.from(btn);
     if(drawArray.every(el=>el.innerHTML!=='')){
-        alert('Draw!');
+        return alert('Draw!');
     }
 }
 const changeColor=(array)=>{
     for(i=0; i<array.length; i++){
         array[i].style.color = 'rgb(224, 19, 111)';
+    }
+}
+newGame.onclick=()=>{
+    for (let i = 0; i < btn.length; i++){
+        btn[i].innerHTML = '';
+        popup.style.display = 'none';
+        btn[i].style.color = '#000'
     }
 }
