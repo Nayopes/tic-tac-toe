@@ -125,6 +125,10 @@ playButton.addEventListener('click', () => {
                         }else if(arr[6].innerHTML === x && arr[2].innerHTML ===x && arr[4].innerHTML ===''){
                             arr[4].innerHTML = o
                         }
+                        
+                         else if(arr[4].innerHTML === ''){
+                            arr[4].innerHTML = o
+                        }
 
                         else {
                             let filtered = arr.filter(el=>el.innerHTML==='')
