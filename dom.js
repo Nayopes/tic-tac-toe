@@ -51,26 +51,92 @@ playButton.addEventListener('click', () => {
                 if (isPlayer) {
                     this.innerHTML = x;
                     isPlayer = false;
+                        checkHorizontalWin();
+                        checkVerticalWin();
+                        checkLeftDiagonal();
+                        checkRightDiagonal();
                     setTimeout(()=>{
                         function randomItem(a) {
                             return Math.floor(Math.random()*a);
                         }
                         let arr = Array.from(btn);
-                        let filtered = arr.filter(el=>el.innerHTML==='')
-                        random = randomItem(filtered.length);
-                        filtered[random].innerHTML = o;
+                        // horizontal
+                        if(arr[0].innerHTML === x && arr[1].innerHTML ===x && arr[2].innerHTML ===''){
+                            arr[2].innerHTML = o
+                        }else if(arr[1].innerHTML === x && arr[2].innerHTML ===x && arr[0].innerHTML ===''){
+                            arr[0].innerHTML = o
+                        }else if(arr[0].innerHTML === x && arr[2].innerHTML ===x && arr[1].innerHTML ===''){
+                            arr[1].innerHTML = o
+                        }
+
+                        else if(arr[3].innerHTML === x && arr[4].innerHTML ===x && arr[5].innerHTML ===''){
+                            arr[5].innerHTML = o
+                        }else if(arr[3].innerHTML === x && arr[5].innerHTML ===x && arr[4].innerHTML ===''){
+                            arr[4].innerHTML = o
+                        }else if(arr[4].innerHTML === x && arr[5].innerHTML ===x && arr[3].innerHTML ===''){
+                            arr[3].innerHTML = o
+                        }
+
+                        else if(arr[6].innerHTML === x && arr[7].innerHTML ===x && arr[8].innerHTML ===''){
+                            arr[8].innerHTML = o
+                        } else if(arr[6].innerHTML === x && arr[8].innerHTML ===x && arr[7].innerHTML ===''){
+                            arr[7].innerHTML = o
+                        } else if(arr[7].innerHTML === x && arr[8].innerHTML ===x && arr[6].innerHTML ===''){
+                            arr[6].innerHTML = o
+                        }
+
+                        //vertical
+                        else if(arr[0].innerHTML === x && arr[3].innerHTML ===x && arr[6].innerHTML ===''){
+                            arr[6].innerHTML = o
+                        }else if(arr[3].innerHTML === x && arr[6].innerHTML ===x && arr[0].innerHTML ===''){
+                            arr[0].innerHTML = o
+                        }else if(arr[0].innerHTML === x && arr[6].innerHTML ===x && arr[3].innerHTML ===''){
+                            arr[3].innerHTML = o
+                        }
+
+                        else if(arr[1].innerHTML === x && arr[4].innerHTML ===x && arr[7].innerHTML ===''){
+                            arr[7].innerHTML = o
+                        }else if(arr[1].innerHTML === x && arr[7].innerHTML ===x && arr[4].innerHTML ===''){
+                            arr[4].innerHTML = o
+                        }else if(arr[4].innerHTML === x && arr[7].innerHTML ===x && arr[1].innerHTML ===''){
+                            arr[1].innerHTML = o
+                        }
+
+                        else if(arr[2].innerHTML === x && arr[5].innerHTML ===x && arr[8].innerHTML ===''){
+                            arr[8].innerHTML = o
+                        }else if(arr[2].innerHTML === x && arr[8].innerHTML ===x && arr[5].innerHTML ===''){
+                            arr[5].innerHTML = o
+                        }else if(arr[5].innerHTML === x && arr[8].innerHTML ===x && arr[2].innerHTML ===''){
+                            arr[2].innerHTML = o
+                        }
+
+                        //diagonals
+                        else if(arr[0].innerHTML === x && arr[4].innerHTML ===x && arr[8].innerHTML ===''){
+                            arr[8].innerHTML = o
+                        }else if(arr[4].innerHTML === x && arr[8].innerHTML ===x && arr[0].innerHTML ===''){
+                            arr[0].innerHTML = o
+                        }else if(arr[8].innerHTML === x && arr[0].innerHTML ===x && arr[4].innerHTML ===''){
+                            arr[4].innerHTML = o
+                        }
+                        else if(arr[2].innerHTML === x && arr[4].innerHTML ===x && arr[6].innerHTML ===''){
+                            arr[6].innerHTML = o
+                        }else if(arr[4].innerHTML === x && arr[6].innerHTML ===x && arr[2].innerHTML ===''){
+                            arr[2].innerHTML = o
+                        }else if(arr[6].innerHTML === x && arr[2].innerHTML ===x && arr[4].innerHTML ===''){
+                            arr[4].innerHTML = o
+                        }
+
+                        else {
+                            let filtered = arr.filter(el=>el.innerHTML==='')
+                            random = randomItem(filtered.length);
+                            filtered[random].innerHTML = o;
+                        }
                         isPlayer = true;
                         checkHorizontalWin();
                         checkVerticalWin();
                         checkLeftDiagonal();
                         checkRightDiagonal();
-                        checkDraw();
                     },1000)
-                        checkHorizontalWin();
-                        checkVerticalWin();
-                        checkLeftDiagonal();
-                        checkRightDiagonal();
-                        checkDraw();
                 }
                 } 
             else {
@@ -87,7 +153,8 @@ const checkHorizontalWin = () => {
         newHorizontal = horizontalArray.splice(0, input.value);
         if (newHorizontal.every(el => el.innerHTML === x)) {
             popup.style.display = 'block';
-            return changeColor(newHorizontal);
+            changeColor(newHorizontal);
+            return false
         } else if (newHorizontal.every(el => el.innerHTML === o)) {
             alert('LOOSER!');
             return changeColor(newHorizontal);
@@ -105,7 +172,8 @@ const checkVerticalWin = () => {
         }
         if (arr.every(el => el.innerHTML === x)) {
             popup.style.display = 'block';
-            return changeColor(arr);
+             changeColor(arr);
+             return false
         } else if (arr.every(el => el.innerHTML === o)) {
             alert('LOOSER!');
             changeColor(arr);
@@ -122,7 +190,8 @@ const checkLeftDiagonal = () => {
     }
     if (arr.every(el => el.innerHTML === x)) {
         popup.style.display = 'block';
-        return changeColor(arr);
+         changeColor(arr);
+         return false
     } else if (arr.every(el => el.innerHTML === o)) {
         alert('LOOSER!');
         changeColor(arr);
@@ -138,7 +207,8 @@ const checkRightDiagonal = () => {
     }
     if (arr.every(el => el.innerHTML === x)) {
         popup.style.display = 'block';
-        return changeColor(arr);
+        changeColor(arr);
+        return false
     } else if (arr.every(el => el.innerHTML === o)) {
         alert('LOOSER!');
         changeColor(arr);
@@ -148,14 +218,17 @@ const checkRightDiagonal = () => {
 const checkDraw = ()=>{
     let  drawArray = Array.from(btn);
     if(drawArray.every(el=>el.innerHTML!=='')){
+        isPlayer = true
         return alert('Draw!');
     }
 }
+
 const changeColor=(array)=>{
     for(i=0; i<array.length; i++){
         array[i].style.color = 'rgb(224, 19, 111)';
     }
 }
+
 newGame.onclick=()=>{
     for (let i = 0; i < btn.length; i++){
         btn[i].innerHTML = '';
