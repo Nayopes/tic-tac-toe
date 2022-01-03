@@ -202,6 +202,8 @@ playButton.addEventListener('click', () => {
                         }
                         else if (arr[4].innerHTML === x && arr[2].innerHTML === '') {
                             arr[2].innerHTML = o
+                        } else if(arr.every(el=>el.innerHTML !=='')){
+                            alert('Վատ չի! ☺');
                         }
                         else {
                             filtered[random].innerHTML = o;
@@ -287,14 +289,6 @@ const checkRightDiagonal = () => {
     } else if (arr.every(el => el.innerHTML === o)) {
         alert('LOOSER!');
         changeColor(arr);
-    }
-}
-
-const checkDraw = () => {
-    let drawArray = Array.from(btn);
-    if (drawArray.every(el => el.innerHTML !== '')) {
-        isPlayer = true
-        return alert('Draw!');
     }
 }
 
