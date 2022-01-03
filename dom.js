@@ -17,7 +17,7 @@ playButton.onclick = () => {
     if (numberOfbox <= 2) {
         alert('Min length is 3!');
     } else {
-        input.style.display = 'none';       
+        input.style.display = 'none';
         playButton.style.display = 'none';
         titleNumber.style.display = 'none';
         container.style.gridTemplateColumns = `repeat(${numberOfbox}, 1fr)`;
@@ -29,18 +29,18 @@ playButton.onclick = () => {
             box.className = buttonBoxes;
             box.style.textAlign = 'center';
             box.style.fontSize = '80px';
-            if(numberOfbox>3 && numberOfbox<6){
+            if (numberOfbox > 3 && numberOfbox < 6) {
                 box.style.fontSize = '50px';
-            }else if(numberOfbox>=6 && numberOfbox<= 8){
+            } else if (numberOfbox >= 6 && numberOfbox <= 8) {
                 box.style.fontSize = '34px';
-            }else if(numberOfbox>8){
+            } else if (numberOfbox > 8) {
                 box.style.fontSize = '20px';
             }
         }
     }
     btn = document.getElementsByClassName(buttonBoxes);
     function randomItem(a) {
-        return Math.floor(Math.random()*a);
+        return Math.floor(Math.random() * a);
     }
     random = randomItem(btn.length)
 }
@@ -51,88 +51,159 @@ playButton.addEventListener('click', () => {
                 if (isPlayer) {
                     this.innerHTML = x;
                     isPlayer = false;
-                        checkHorizontalWin();
-                        checkVerticalWin();
-                        checkLeftDiagonal();
-                        checkRightDiagonal();
-                    setTimeout(()=>{
+                    checkHorizontalWin();
+                    checkVerticalWin();
+                    checkLeftDiagonal();
+                    checkRightDiagonal();
+                    setTimeout(() => {
                         function randomItem(a) {
-                            return Math.floor(Math.random()*a);
+                            return Math.floor(Math.random() * a);
                         }
                         let arr = Array.from(btn);
-                        // horizontal
-                        if(arr[0].innerHTML === x && arr[1].innerHTML ===x && arr[2].innerHTML ===''){
+                        let filtered = arr.filter(el => el.innerHTML === '');
+                        random = randomItem(filtered.length);
+                        // horizontal win
+                        if (arr[0].innerHTML === o && arr[1].innerHTML === o && arr[2].innerHTML === '') {
                             arr[2].innerHTML = o
-                        }else if(arr[1].innerHTML === x && arr[2].innerHTML ===x && arr[0].innerHTML ===''){
+                        } else if (arr[1].innerHTML === o && arr[2].innerHTML === o && arr[0].innerHTML === '') {
                             arr[0].innerHTML = o
-                        }else if(arr[0].innerHTML === x && arr[2].innerHTML ===x && arr[1].innerHTML ===''){
+                        } else if (arr[0].innerHTML === o && arr[2].innerHTML === o && arr[1].innerHTML === '') {
                             arr[1].innerHTML = o
                         }
 
-                        else if(arr[3].innerHTML === x && arr[4].innerHTML ===x && arr[5].innerHTML ===''){
+                        else if (arr[3].innerHTML === o && arr[4].innerHTML === o && arr[5].innerHTML === '') {
                             arr[5].innerHTML = o
-                        }else if(arr[3].innerHTML === x && arr[5].innerHTML ===x && arr[4].innerHTML ===''){
+                        } else if (arr[3].innerHTML === o && arr[5].innerHTML === o && arr[4].innerHTML === '') {
                             arr[4].innerHTML = o
-                        }else if(arr[4].innerHTML === x && arr[5].innerHTML ===x && arr[3].innerHTML ===''){
+                        } else if (arr[4].innerHTML === o && arr[5].innerHTML === o && arr[3].innerHTML === '') {
                             arr[3].innerHTML = o
                         }
 
-                        else if(arr[6].innerHTML === x && arr[7].innerHTML ===x && arr[8].innerHTML ===''){
+                        else if (arr[6].innerHTML === o && arr[7].innerHTML === o && arr[8].innerHTML === '') {
                             arr[8].innerHTML = o
-                        } else if(arr[6].innerHTML === x && arr[8].innerHTML ===x && arr[7].innerHTML ===''){
+                        } else if (arr[6].innerHTML === o && arr[8].innerHTML === o && arr[7].innerHTML === '') {
                             arr[7].innerHTML = o
-                        } else if(arr[7].innerHTML === x && arr[8].innerHTML ===x && arr[6].innerHTML ===''){
+                        } else if (arr[7].innerHTML === o && arr[8].innerHTML === o && arr[6].innerHTML === '') {
                             arr[6].innerHTML = o
                         }
 
-                        //vertical
-                        else if(arr[0].innerHTML === x && arr[3].innerHTML ===x && arr[6].innerHTML ===''){
+
+                        //vertical win
+                        else if (arr[0].innerHTML === o && arr[3].innerHTML === o && arr[6].innerHTML === '') {
                             arr[6].innerHTML = o
-                        }else if(arr[3].innerHTML === x && arr[6].innerHTML ===x && arr[0].innerHTML ===''){
+                        } else if (arr[3].innerHTML === o && arr[6].innerHTML === o && arr[0].innerHTML === '') {
                             arr[0].innerHTML = o
-                        }else if(arr[0].innerHTML === x && arr[6].innerHTML ===x && arr[3].innerHTML ===''){
+                        } else if (arr[0].innerHTML === o && arr[6].innerHTML === o && arr[3].innerHTML === '') {
                             arr[3].innerHTML = o
                         }
 
-                        else if(arr[1].innerHTML === x && arr[4].innerHTML ===x && arr[7].innerHTML ===''){
+                        else if (arr[1].innerHTML === o && arr[4].innerHTML === o && arr[7].innerHTML === '') {
                             arr[7].innerHTML = o
-                        }else if(arr[1].innerHTML === x && arr[7].innerHTML ===x && arr[4].innerHTML ===''){
+                        } else if (arr[1].innerHTML === o && arr[7].innerHTML === o && arr[4].innerHTML === '') {
                             arr[4].innerHTML = o
-                        }else if(arr[4].innerHTML === x && arr[7].innerHTML ===x && arr[1].innerHTML ===''){
+                        } else if (arr[4].innerHTML === o && arr[7].innerHTML === o && arr[1].innerHTML === '') {
                             arr[1].innerHTML = o
                         }
 
-                        else if(arr[2].innerHTML === x && arr[5].innerHTML ===x && arr[8].innerHTML ===''){
+                        else if (arr[2].innerHTML === o && arr[5].innerHTML === o && arr[8].innerHTML === '') {
                             arr[8].innerHTML = o
-                        }else if(arr[2].innerHTML === x && arr[8].innerHTML ===x && arr[5].innerHTML ===''){
+                        } else if (arr[2].innerHTML === o && arr[8].innerHTML === o && arr[5].innerHTML === '') {
                             arr[5].innerHTML = o
-                        }else if(arr[5].innerHTML === x && arr[8].innerHTML ===x && arr[2].innerHTML ===''){
+                        } else if (arr[5].innerHTML === o && arr[8].innerHTML === o && arr[2].innerHTML === '') {
                             arr[2].innerHTML = o
                         }
 
-                        //diagonals
-                        else if(arr[0].innerHTML === x && arr[4].innerHTML ===x && arr[8].innerHTML ===''){
+                        //diagonal win
+                        else if (arr[0].innerHTML === o && arr[4].innerHTML === o && arr[8].innerHTML === '') {
                             arr[8].innerHTML = o
-                        }else if(arr[4].innerHTML === x && arr[8].innerHTML ===x && arr[0].innerHTML ===''){
+                        } else if (arr[4].innerHTML === o && arr[8].innerHTML === o && arr[0].innerHTML === '') {
                             arr[0].innerHTML = o
-                        }else if(arr[8].innerHTML === x && arr[0].innerHTML ===x && arr[4].innerHTML ===''){
-                            arr[4].innerHTML = o
-                        }
-                        else if(arr[2].innerHTML === x && arr[4].innerHTML ===x && arr[6].innerHTML ===''){
-                            arr[6].innerHTML = o
-                        }else if(arr[4].innerHTML === x && arr[6].innerHTML ===x && arr[2].innerHTML ===''){
-                            arr[2].innerHTML = o
-                        }else if(arr[6].innerHTML === x && arr[2].innerHTML ===x && arr[4].innerHTML ===''){
-                            arr[4].innerHTML = o
-                        }
-                        
-                         else if(arr[4].innerHTML === ''){
+                        } else if (arr[8].innerHTML === o && arr[0].innerHTML === o && arr[4].innerHTML === '') {
                             arr[4].innerHTML = o
                         }
 
+                        else if (arr[2].innerHTML === o && arr[4].innerHTML === o && arr[6].innerHTML === '') {
+                            arr[6].innerHTML = o
+                        } else if (arr[4].innerHTML === o && arr[6].innerHTML === o && arr[2].innerHTML === '') {
+                            arr[2].innerHTML = o
+                        } else if (arr[6].innerHTML === o && arr[2].innerHTML === o && arr[4].innerHTML === '') {
+                            arr[4].innerHTML = o
+                        }
+
+
+                        // horizontal protect
+                        else if (arr[0].innerHTML === x && arr[1].innerHTML === x && arr[2].innerHTML === '') {
+                            arr[2].innerHTML = o
+                        } else if (arr[1].innerHTML === x && arr[2].innerHTML === x && arr[0].innerHTML === '') {
+                            arr[0].innerHTML = o
+                        } else if (arr[0].innerHTML === x && arr[2].innerHTML === x && arr[1].innerHTML === '') {
+                            arr[1].innerHTML = o
+                        }
+
+                        else if (arr[3].innerHTML === x && arr[4].innerHTML === x && arr[5].innerHTML === '') {
+                            arr[5].innerHTML = o
+                        } else if (arr[3].innerHTML === x && arr[5].innerHTML === x && arr[4].innerHTML === '') {
+                            arr[4].innerHTML = o
+                        } else if (arr[4].innerHTML === x && arr[5].innerHTML === x && arr[3].innerHTML === '') {
+                            arr[3].innerHTML = o
+                        }
+
+                        else if (arr[6].innerHTML === x && arr[7].innerHTML === x && arr[8].innerHTML === '') {
+                            arr[8].innerHTML = o
+                        } else if (arr[6].innerHTML === x && arr[8].innerHTML === x && arr[7].innerHTML === '') {
+                            arr[7].innerHTML = o
+                        } else if (arr[7].innerHTML === x && arr[8].innerHTML === x && arr[6].innerHTML === '') {
+                            arr[6].innerHTML = o
+                        }
+
+                        //vertical protect
+                        else if (arr[0].innerHTML === x && arr[3].innerHTML === x && arr[6].innerHTML === '') {
+                            arr[6].innerHTML = o
+                        } else if (arr[3].innerHTML === x && arr[6].innerHTML === x && arr[0].innerHTML === '') {
+                            arr[0].innerHTML = o
+                        } else if (arr[0].innerHTML === x && arr[6].innerHTML === x && arr[3].innerHTML === '') {
+                            arr[3].innerHTML = o
+                        }
+
+                        else if (arr[1].innerHTML === x && arr[4].innerHTML === x && arr[7].innerHTML === '') {
+                            arr[7].innerHTML = o
+                        } else if (arr[1].innerHTML === x && arr[7].innerHTML === x && arr[4].innerHTML === '') {
+                            arr[4].innerHTML = o
+                        } else if (arr[4].innerHTML === x && arr[7].innerHTML === x && arr[1].innerHTML === '') {
+                            arr[1].innerHTML = o
+                        }
+
+                        else if (arr[2].innerHTML === x && arr[5].innerHTML === x && arr[8].innerHTML === '') {
+                            arr[8].innerHTML = o
+                        } else if (arr[2].innerHTML === x && arr[8].innerHTML === x && arr[5].innerHTML === '') {
+                            arr[5].innerHTML = o
+                        } else if (arr[5].innerHTML === x && arr[8].innerHTML === x && arr[2].innerHTML === '') {
+                            arr[2].innerHTML = o
+                        }
+
+                        //diagonal protect
+                        else if (arr[0].innerHTML === x && arr[4].innerHTML === x && arr[8].innerHTML === '') {
+                            arr[8].innerHTML = o
+                        } else if (arr[4].innerHTML === x && arr[8].innerHTML === x && arr[0].innerHTML === '') {
+                            arr[0].innerHTML = o
+                        } else if (arr[8].innerHTML === x && arr[0].innerHTML === x && arr[4].innerHTML === '') {
+                            arr[4].innerHTML = o
+                        }
+
+                        else if (arr[2].innerHTML === x && arr[4].innerHTML === x && arr[6].innerHTML === '') {
+                            arr[6].innerHTML = o
+                        } else if (arr[4].innerHTML === x && arr[6].innerHTML === x && arr[2].innerHTML === '') {
+                            arr[2].innerHTML = o
+                        } else if (arr[6].innerHTML === x && arr[2].innerHTML === x && arr[4].innerHTML === '') {
+                            arr[4].innerHTML = o
+                        }
+                        else if (arr[4].innerHTML === '') {
+                            arr[4].innerHTML = o
+                        }
+                        else if (arr[4].innerHTML === x && arr[2].innerHTML === '') {
+                            arr[2].innerHTML = o
+                        }
                         else {
-                            let filtered = arr.filter(el=>el.innerHTML==='')
-                            random = randomItem(filtered.length);
                             filtered[random].innerHTML = o;
                         }
                         isPlayer = true;
@@ -140,9 +211,9 @@ playButton.addEventListener('click', () => {
                         checkVerticalWin();
                         checkLeftDiagonal();
                         checkRightDiagonal();
-                    },1000)
+                    }, 500)
                 }
-                } 
+            }
             else {
                 alert('Field is already taken!');
             }
@@ -176,8 +247,8 @@ const checkVerticalWin = () => {
         }
         if (arr.every(el => el.innerHTML === x)) {
             popup.style.display = 'block';
-             changeColor(arr);
-             return false
+            changeColor(arr);
+            return false
         } else if (arr.every(el => el.innerHTML === o)) {
             alert('LOOSER!');
             changeColor(arr);
@@ -194,8 +265,8 @@ const checkLeftDiagonal = () => {
     }
     if (arr.every(el => el.innerHTML === x)) {
         popup.style.display = 'block';
-         changeColor(arr);
-         return false
+        changeColor(arr);
+        return false
     } else if (arr.every(el => el.innerHTML === o)) {
         alert('LOOSER!');
         changeColor(arr);
@@ -219,22 +290,22 @@ const checkRightDiagonal = () => {
     }
 }
 
-const checkDraw = ()=>{
-    let  drawArray = Array.from(btn);
-    if(drawArray.every(el=>el.innerHTML!=='')){
+const checkDraw = () => {
+    let drawArray = Array.from(btn);
+    if (drawArray.every(el => el.innerHTML !== '')) {
         isPlayer = true
         return alert('Draw!');
     }
 }
 
-const changeColor=(array)=>{
-    for(i=0; i<array.length; i++){
+const changeColor = (array) => {
+    for (i = 0; i < array.length; i++) {
         array[i].style.color = 'rgb(224, 19, 111)';
     }
 }
 
-newGame.onclick=()=>{
-    for (let i = 0; i < btn.length; i++){
+newGame.onclick = () => {
+    for (let i = 0; i < btn.length; i++) {
         btn[i].innerHTML = '';
         popup.style.display = 'none';
         btn[i].style.color = '#000'
